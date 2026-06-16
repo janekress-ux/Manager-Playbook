@@ -408,12 +408,152 @@
     /* ── Utility ── */
     .card { background: var(--white); border-radius: var(--radius); padding: 28px 32px; box-shadow: var(--shadow); margin-bottom: 16px; }
     hr.div { border: none; border-top: 1px solid var(--gray-100); margin: 20px 0; }
+
+    /* ── EQ Assessment ── */
+    .eq-home-card {
+      background: var(--white); border: 2px solid var(--gray-200);
+      border-radius: var(--radius); padding: 24px 26px;
+      cursor: pointer; transition: border-color .2s, box-shadow .2s;
+      display: flex; align-items: center; gap: 20px; margin-bottom: 32px;
+    }
+    .eq-home-card:hover { border-color: var(--blue-light); box-shadow: var(--shadow-lg); }
+    .eq-home-icon { font-size: 44px; flex-shrink: 0; }
+    .eq-home-body {}
+    .eq-home-title { font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 5px; }
+    .eq-home-desc { font-size: 13px; color: var(--gray-500); line-height: 1.6; }
+    .eq-home-pills { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+    .eq-home-pill {
+      background: var(--gray-100); color: var(--gray-500);
+      font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 999px;
+    }
+    .eq-legend {
+      background: var(--gray-50); border-radius: 10px;
+      padding: 12px 18px; margin-bottom: 20px;
+      border: 1px solid var(--gray-200);
+    }
+    .eq-legend-inner {
+      display: flex; justify-content: space-between;
+      font-size: 12px; font-weight: 600; color: var(--gray-500);
+      flex-wrap: wrap; gap: 8px;
+    }
+    .eq-question { padding: 16px 0; border-bottom: 1px solid var(--gray-100); }
+    .eq-question:last-child { border-bottom: none; }
+    .eq-q-text { font-size: 14px; line-height: 1.65; color: var(--gray-700); margin-bottom: 10px; }
+    .eq-q-num { font-weight: 800; color: var(--navy); margin-right: 4px; }
+    .eq-ratings { display: flex; gap: 8px; flex-wrap: wrap; }
+    .eq-rating {
+      background: var(--gray-100); border: 2px solid var(--gray-200);
+      color: var(--gray-600); font-size: 13px; font-weight: 700;
+      width: 40px; height: 40px; border-radius: 50%;
+      cursor: pointer; transition: all .15s; font-family: inherit;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .eq-rating:hover { border-color: var(--blue-light); background: #eff6ff; color: var(--blue); }
+    .eq-rating-active { background: var(--blue); border-color: var(--blue); color: white; }
+    .eq-rating-active:hover { background: var(--blue); border-color: var(--blue); color: white; }
+    .eq-cat-result { margin-bottom: 22px; }
+    .eq-cat-result:last-child { margin-bottom: 0; }
+    .eq-cat-header { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .eq-cat-icon { font-size: 20px; }
+    .eq-cat-name { font-size: 14px; font-weight: 800; color: var(--navy); flex: 1; }
+    .eq-cat-score { font-size: 13px; font-weight: 700; }
+    .eq-cat-desc {
+      font-size: 12px; color: var(--gray-500); margin-bottom: 8px;
+      line-height: 1.5; padding-left: 30px;
+    }
+    .eq-bar-track { background: var(--gray-200); border-radius: 999px; height: 8px; overflow: hidden; }
+    .eq-bar-fill { height: 100%; border-radius: 999px; transition: width .8s ease; }
+
   </style>
 </head>
 <body>
 <div class="shell" id="app"></div>
 
 <script>
+// ─────────────────────────────────────────────
+// EQ ASSESSMENT DATA
+// ─────────────────────────────────────────────
+const EQ_QUESTIONS = [
+  "I am aware of the physical reactions (twinges, aches, sudden changes) that signal a 'gut reaction'.",
+  "I readily admit mistakes and apologize.",
+  "I let go of problems, anger, or hurt from the past and I can move beyond them.",
+  "I generally have an accurate idea of how another person perceives me during a particular interaction.",
+  "I have several important things in my life that I am enthusiastic about, and I let it show.",
+  "I can easily meet and initiate conversation with new people when I have to.",
+  "I take a break or use another active method of increasing energy when I sense my energy level is getting low.",
+  "I have little trouble taking prudent risks.",
+  "I 'open up' with people appropriately — not too much, but enough so that I don't come across as cold or distant.",
+  "I can engage in an interaction with another person and assess their mood based on nonverbal signals.",
+  "I see that others are usually feeling inspired and encouraged after talking to me.",
+  "I have no trouble making presentations in front of groups or conducting meetings.",
+  "I take time every day for quiet reflection.",
+  "I take initiative and move ahead on tasks that need to be done.",
+  "I refrain from making up my mind on issues and expressing my opinion until I have all of the pertinent facts.",
+  "I have a number of people that I can turn to, and I ask for their help when I need it.",
+  "I try to find the positive in any given situation.",
+  "I can deal calmly, sensitively, and proactively with the emotional displays of others.",
+  "I can usually identify the emotion I am feeling at any given moment.",
+  "I am generally comfortable in new situations.",
+  "I neither bury my anger nor let it explode onto others.",
+  "I can show empathy and match my feelings with those of another person during an interaction.",
+  "I can push ahead on a big project despite unforeseen obstacles.",
+  "I am respected and liked by others, even when they don't agree with me.",
+  "I am clear in regard to my own goals and values.",
+  "I express my viewpoint honestly and thoughtfully, without being pushy or critical.",
+  "I am adept at managing my moods, and seldom bring negative emotions to work.",
+  "I focus my full attention on others when I listen to them.",
+  "I believe the work I do day-to-day has meaning and value to society.",
+  "I can effectively persuade others to adopt my point of view without coercing them."
+];
+
+const EQ_CATEGORIES = [
+  {
+    name: 'Self-Awareness',
+    icon: '🪞',
+    questions: [1, 7, 13, 19, 25],
+    description: 'Understanding your own emotions, strengths, and how you impact others.',
+    insight: 'Leaders with high self-awareness recognise their emotional triggers and understand how their behaviour affects their team. They actively seek feedback and can separate their intent from their impact.'
+  },
+  {
+    name: 'Empathy',
+    icon: '🤝',
+    questions: [4, 10, 16, 22, 28],
+    description: 'Sensing and understanding other people\'s emotions and perspectives.',
+    insight: 'Empathetic leaders listen fully, read the room, and adapt their style to meet people where they are. This is foundational to trust, retention, and effective coaching.'
+  },
+  {
+    name: 'Motivation',
+    icon: '🔥',
+    questions: [5, 11, 17, 23, 29],
+    description: 'Drive, optimism, and the ability to pursue goals with energy and persistence.',
+    insight: 'Intrinsically motivated leaders find meaning in their work and inspire the same in others. They bounce back from setbacks and maintain enthusiasm even in challenging periods.'
+  },
+  {
+    name: 'Self-Confidence',
+    icon: '💪',
+    questions: [2, 8, 14, 20, 26],
+    description: 'Belief in your abilities, comfort with risk, and honest self-presentation.',
+    insight: 'Self-confident leaders own mistakes gracefully, take calculated risks, and speak their truth without defensiveness. Confidence is the foundation of decisive, credible leadership.'
+  },
+  {
+    name: 'Self-Control',
+    icon: '🧘',
+    questions: [3, 9, 15, 21, 27],
+    description: 'Managing disruptive emotions and impulses; staying composed under pressure.',
+    insight: 'Leaders with strong self-control don\'t let stress, frustration, or past grievances drive their responses. They create psychological safety by being predictable and measured, even in difficult moments.'
+  },
+  {
+    name: 'Social Competency',
+    icon: '🌟',
+    questions: [6, 12, 18, 24, 30],
+    description: 'Building rapport, influencing others, and navigating social situations effectively.',
+    insight: 'Socially competent leaders read interpersonal dynamics accurately, communicate with presence, and can adapt their influence style to different people and contexts.'
+  }
+];
+
+let eqRatings = {};
+
+
 // ─────────────────────────────────────────────
 // DATA
 // ─────────────────────────────────────────────
@@ -2301,6 +2441,9 @@ function render() {
   else if (S.screen === 'intro')     wrap.appendChild(renderIntro());
   else if (S.screen === 'question')  wrap.appendChild(renderQuestion());
   else if (S.screen === 'debrief')   wrap.appendChild(renderDebrief());
+  else if (S.screen === 'eq-intro')     wrap.appendChild(renderEQIntro());
+  else if (S.screen === 'eq-questions') wrap.appendChild(renderEQQuestions());
+  else if (S.screen === 'eq-results')   wrap.appendChild(renderEQResults());
 
   app.appendChild(wrap);
 }
@@ -2318,6 +2461,9 @@ function mkTopbar() {
       else if (S.screen === 'intro')     go('scenarios');
       else if (S.screen === 'question')  go('intro');
       else if (S.screen === 'debrief')   go('topics');
+      else if (S.screen === 'eq-intro')   go('home');
+      else if (S.screen === 'eq-questions') go('eq-intro');
+      else if (S.screen === 'eq-results')  go('eq-questions');
     };
   }
   bar.appendChild(back);
@@ -2348,6 +2494,27 @@ function renderHome() {
   btn.onclick = () => go('topics');
   row.appendChild(btn);
   frag.appendChild(row);
+
+  // EQ Assessment card
+  const eqHd = el('div', 'sec-hd');
+  eqHd.innerHTML = '<h2>🧠 EQ Self-Assessment</h2><p>Measure your emotional intelligence across six dimensions.</p>';
+  frag.appendChild(eqHd);
+
+  const eqCard = el('div', 'eq-home-card');
+  eqCard.innerHTML = `
+    <div class="eq-home-icon">🧠</div>
+    <div class="eq-home-body">
+      <div class="eq-home-title">EQ Self-Assessment</div>
+      <div class="eq-home-desc">Rate yourself on 30 statements across six EQ dimensions and get a personalised profile with development insights.</div>
+      <div class="eq-home-pills">
+        <span class="eq-home-pill">30 Questions</span>
+        <span class="eq-home-pill">~5 Minutes</span>
+        <span class="eq-home-pill">6 EQ Dimensions</span>
+      </div>
+    </div>
+  `;
+  eqCard.onclick = () => go('eq-intro');
+  frag.appendChild(eqCard);
 
   return frag;
 }
@@ -2660,6 +2827,194 @@ function renderDebrief() {
     row.appendChild(ns);
   }
   const topicsBtn = el('button', 'btn btn-secondary', '← All Topics');
+  topicsBtn.onclick = () => go('topics');
+  row.appendChild(topicsBtn);
+  frag.appendChild(row);
+
+  return frag;
+}
+
+
+// ─── EQ ASSESSMENT ───
+function renderEQIntro() {
+  const frag = df();
+
+  const card = el('div', 'intro-card');
+  card.innerHTML = `
+    <div class="intro-eyebrow">Emotional Intelligence · Self-Assessment</div>
+    <div class="intro-title">EQ Self-Assessment</div>
+    <div class="context-box">
+      <div class="context-label">📋 How It Works</div>
+      <div class="context-text">Rate each of the 30 statements on a scale of 1 to 5 based on how true it is of you — from "Never" (1) to "Always" (5). Answer honestly; there are no right or wrong answers. Your results will show your EQ profile across six dimensions of emotional intelligence.</div>
+    </div>
+    <div class="intro-meta">
+      <div class="meta-item"><strong>Questions:</strong> 30</div>
+      <div class="meta-item"><strong>Time:</strong> ~5 minutes</div>
+      <div class="meta-item"><strong>Categories:</strong> 6 EQ dimensions</div>
+    </div>
+  `;
+  frag.appendChild(card);
+
+  const row = el('div', 'btn-row');
+  const btn = el('button', 'btn btn-primary', 'Begin Assessment →');
+  btn.onclick = () => { eqRatings = {}; go('eq-questions'); };
+  row.appendChild(btn);
+  const back = el('button', 'btn btn-secondary', '← Back');
+  back.onclick = () => go('home');
+  row.appendChild(back);
+  frag.appendChild(row);
+
+  return frag;
+}
+
+function renderEQQuestions() {
+  const frag = df();
+  const answered = Object.keys(eqRatings).length;
+  const total = EQ_QUESTIONS.length;
+
+  // Progress
+  const pw = el('div', 'progress-wrap');
+  pw.innerHTML = `
+    <div class="progress-row">
+      <span class="progress-label">EQ Self-Assessment</span>
+      <span class="progress-count">${answered} of ${total} answered</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" style="width:${(answered/total)*100}%"></div></div>
+  `;
+  frag.appendChild(pw);
+
+  // Scale legend
+  const legend = el('div', 'eq-legend');
+  legend.innerHTML = `<div class="eq-legend-inner">
+    <span>1 — Never</span><span>2 — Rarely</span><span>3 — Sometimes</span><span>4 — Mostly</span><span>5 — Always</span>
+  </div>`;
+  frag.appendChild(legend);
+
+  // Questions
+  const card = el('div', 'q-card');
+  EQ_QUESTIONS.forEach((qText, idx) => {
+    const qNum = idx + 1;
+    const qDiv = el('div', 'eq-question');
+    const selected = eqRatings[qNum];
+    let ratingBtns = '';
+    for (let r = 1; r <= 5; r++) {
+      const active = selected === r ? ' eq-rating-active' : '';
+      ratingBtns += `<button class="eq-rating${active}" onclick="setEQRating(${qNum},${r})">${r}</button>`;
+    }
+    qDiv.innerHTML = `
+      <div class="eq-q-text"><span class="eq-q-num">${qNum}.</span>${qText}</div>
+      <div class="eq-ratings">${ratingBtns}</div>
+    `;
+    card.appendChild(qDiv);
+  });
+  frag.appendChild(card);
+
+  // Submit
+  const row = el('div', 'btn-row');
+  const remaining = total - answered;
+  const submitBtn = el('button', 'btn btn-primary', remaining === 0 ? 'View My Results →' : `View Results (${remaining} unanswered)`);
+  submitBtn.onclick = () => go('eq-results');
+  row.appendChild(submitBtn);
+  const backBtn = el('button', 'btn btn-secondary', '← Back');
+  backBtn.onclick = () => go('eq-intro');
+  row.appendChild(backBtn);
+  frag.appendChild(row);
+
+  return frag;
+}
+
+function setEQRating(qNum, rating) {
+  const scrollY = window.scrollY;
+  eqRatings[qNum] = rating;
+  render();
+  window.scrollTo(0, scrollY);
+}
+
+function renderEQResults() {
+  const frag = df();
+
+  // Calculate scores
+  let totalScore = 0;
+  const catScores = EQ_CATEGORIES.map(cat => {
+    const score = cat.questions.reduce((sum, q) => sum + (eqRatings[q] || 0), 0);
+    totalScore += score;
+    const max = cat.questions.length * 5;
+    const pct = Math.round((score / max) * 100);
+    return { ...cat, score, max, pct };
+  });
+  const totalPct = Math.round((totalScore / 150) * 100);
+
+  function getLevel(pct) {
+    if (pct >= 84) return { label: 'Strong',      color: 'var(--green)',  bg: 'var(--green-bg)' };
+    if (pct >= 64) return { label: 'Proficient',  color: 'var(--blue)',   bg: '#eff6ff' };
+    if (pct >= 44) return { label: 'Developing',  color: 'var(--amber)',  bg: 'var(--amber-bg)' };
+    return           { label: 'Focus Area',  color: 'var(--red)',    bg: 'var(--red-bg)' };
+  }
+
+  const overallLevel = getLevel(totalPct);
+
+  // Hero
+  const hero = el('div', 'debrief-hero');
+  hero.innerHTML = `
+    <div class="icon">🧠</div>
+    <h2>Your EQ Profile</h2>
+    <p>Overall Score: <strong>${totalScore} / 150</strong> &nbsp;·&nbsp; ${totalPct}% &nbsp;·&nbsp; <strong style="color:${overallLevel.color}">${overallLevel.label}</strong></p>
+  `;
+  frag.appendChild(hero);
+
+  // Category breakdown
+  const scoresCard = el('div', 'debrief-card');
+  const scoresHd = el('h3', '', '📊 Your EQ Profile');
+  scoresCard.appendChild(scoresHd);
+
+  catScores.forEach(cat => {
+    const level = getLevel(cat.pct);
+    const catDiv = document.createElement('div');
+    catDiv.className = 'eq-cat-result';
+    catDiv.innerHTML = `
+      <div class="eq-cat-header">
+        <span class="eq-cat-icon">${cat.icon}</span>
+        <span class="eq-cat-name">${cat.name}</span>
+        <span class="eq-cat-score" style="color:${level.color}">${cat.score}/25 · ${level.label}</span>
+      </div>
+      <div class="eq-cat-desc">${cat.description}</div>
+      <div class="eq-bar-track"><div class="eq-bar-fill" style="width:${cat.pct}%;background:${level.color}"></div></div>
+    `;
+    scoresCard.appendChild(catDiv);
+  });
+  frag.appendChild(scoresCard);
+
+  // Insights for lowest two
+  const sorted = [...catScores].sort((a, b) => a.score - b.score);
+  const highest = catScores.reduce((a, b) => a.score > b.score ? a : b);
+  const lowest  = sorted[0];
+
+  const insightCard = el('div', 'debrief-card');
+  insightCard.innerHTML = '<h3>💡 Development Focus</h3>';
+
+  [lowest, sorted[1]].forEach(cat => {
+    const level = getLevel(cat.pct);
+    const insightDiv = el('div', '');
+    insightDiv.style.cssText = `background:${level.bg};border-radius:10px;padding:14px 16px;margin-bottom:12px`;
+    insightDiv.innerHTML = `<div style="font-weight:800;font-size:13px;margin-bottom:6px;color:var(--navy)">${cat.icon} ${cat.name} — ${cat.score}/25</div><div style="font-size:13px;line-height:1.65;color:var(--gray-700)">${cat.insight}</div>`;
+    insightCard.appendChild(insightDiv);
+  });
+  frag.appendChild(insightCard);
+
+  // Key takeaway
+  const tkCard = el('div', 'debrief-card');
+  tkCard.innerHTML = '<h3>🔑 Your Takeaway</h3>';
+  const tk = el('div', 'takeaway');
+  tk.innerHTML = `<div class="takeaway-lbl">Focus Here First</div><p>Your strongest dimension is <strong>${highest.name}</strong> (${highest.score}/25) — lean on this as a foundation. Your greatest growth opportunity is <strong>${lowest.name}</strong> (${lowest.score}/25). Explore the related scenarios in the playbook to build this skill in practice.</p>`;
+  tkCard.appendChild(tk);
+  frag.appendChild(tkCard);
+
+  // Actions
+  const row = el('div', 'btn-row');
+  const retakeBtn = el('button', 'btn btn-outline', '↺ Retake Assessment');
+  retakeBtn.onclick = () => { eqRatings = {}; go('eq-questions'); };
+  row.appendChild(retakeBtn);
+  const topicsBtn = el('button', 'btn btn-primary', 'Explore Topics →');
   topicsBtn.onclick = () => go('topics');
   row.appendChild(topicsBtn);
   frag.appendChild(row);
