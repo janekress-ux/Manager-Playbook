@@ -464,6 +464,90 @@
     .eq-bar-track { background: var(--gray-200); border-radius: 999px; height: 8px; overflow: hidden; }
     .eq-bar-fill { height: 100%; border-radius: 999px; transition: width .8s ease; }
 
+
+  /* ── CERTIFICATION ── */
+  .cert-home-card {
+    display: flex; align-items: center; gap: 20px;
+    background: linear-gradient(135deg, var(--surface) 0%, color-mix(in srgb, var(--accent) 8%, var(--surface)) 100%);
+    border: 1.5px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    border-radius: 16px; padding: 24px; margin-top: 8px; cursor: pointer;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .cert-home-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 18%, transparent); }
+  .cert-home-icon { font-size: 2.4rem; flex-shrink: 0; }
+  .cert-home-body { flex: 1; }
+  .cert-home-title { font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+  .cert-home-desc { font-size: .9rem; color: var(--text-secondary); margin-bottom: 10px; }
+  .cert-home-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .cert-home-pill { background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent);
+    border-radius: 20px; padding: 3px 10px; font-size: .75rem; font-weight: 600; }
+  .cert-intro-card { background: var(--surface); border-radius: 16px; padding: 32px; max-width: 680px; margin: 0 auto; }
+  .cert-intro-card h2 { margin-bottom: 8px; }
+  .cert-intro-card p { color: var(--text-secondary); margin-bottom: 0; }
+  .cert-intro-rules { background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+    border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0;
+    padding: 16px 20px; margin: 20px 0; font-size: .9rem; color: var(--text-secondary); }
+  .cert-intro-rules li { margin-bottom: 6px; }
+  .cert-q-wrap { background: var(--surface); border-radius: 16px; padding: 28px; max-width: 700px; margin: 0 auto 16px; }
+  .cert-progress { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+  .cert-progress-bar { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+  .cert-progress-fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width .3s; }
+  .cert-progress-label { font-size: .8rem; color: var(--text-secondary); white-space: nowrap; }
+  .cert-q-num { font-size: .78rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; }
+  .cert-q-text { font-size: 1.05rem; font-weight: 600; color: var(--text-primary); line-height: 1.5; margin-bottom: 20px; }
+  .cert-options { display: flex; flex-direction: column; gap: 10px; }
+  .cert-option { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px;
+    border: 1.5px solid var(--border); border-radius: 10px; cursor: pointer;
+    transition: border-color .15s, background .15s; font-size: .93rem; color: var(--text-primary); }
+  .cert-option:hover { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 6%, transparent); }
+  .cert-option.selected { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
+  .cert-option.correct { border-color: #22c55e; background: color-mix(in srgb, #22c55e 10%, transparent); }
+  .cert-option.wrong   { border-color: #ef4444; background: color-mix(in srgb, #ef4444 10%, transparent); }
+  .cert-option-letter { width: 26px; height: 26px; border-radius: 50%; background: var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .8rem; font-weight: 700; flex-shrink: 0; }
+  .cert-feedback-banner { margin-top: 16px; padding: 12px 16px; border-radius: 8px; font-size: .88rem; font-weight: 600; }
+  .cert-feedback-banner.correct { background: color-mix(in srgb, #22c55e 15%, transparent); color: #16a34a; }
+  .cert-feedback-banner.wrong   { background: color-mix(in srgb, #ef4444 15%, transparent); color: #dc2626; }
+  .cert-result-card { background: var(--surface); border-radius: 20px; padding: 40px; max-width: 680px; margin: 0 auto; text-align: center; }
+  .cert-result-icon { font-size: 3.5rem; margin-bottom: 12px; }
+  .cert-result-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 8px; }
+  .cert-result-score { font-size: 1rem; color: var(--text-secondary); margin-bottom: 24px; }
+  .cert-score-ring { width: 110px; height: 110px; margin: 0 auto 24px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; font-weight: 800; }
+  .cert-score-ring.pass { background: color-mix(in srgb, #22c55e 15%, transparent); color: #16a34a;
+    border: 4px solid #22c55e; }
+  .cert-score-ring.fail { background: color-mix(in srgb, #ef4444 12%, transparent); color: #dc2626;
+    border: 4px solid #ef4444; }
+  .certificate {
+    background: linear-gradient(135deg, #fefdf8 0%, #fff9e8 100%);
+    border: 3px solid #c9a84c; border-radius: 12px;
+    padding: 36px 40px; margin: 24px auto; max-width: 600px; text-align: center;
+    box-shadow: 0 4px 24px rgba(0,0,0,.12);
+  }
+  .certificate-header { font-size: .75rem; font-weight: 700; letter-spacing: .15em; color: #9a7a2e; text-transform: uppercase; margin-bottom: 8px; }
+  .certificate-title { font-size: 1.5rem; font-weight: 800; color: #1a1a1a; margin-bottom: 4px; }
+  .certificate-subtitle { font-size: .85rem; color: #666; margin-bottom: 20px; }
+  .certificate-divider { height: 2px; background: linear-gradient(90deg, transparent, #c9a84c, transparent); margin: 16px 0; }
+  .certificate-name { font-size: 1.8rem; font-weight: 800; color: #c9a84c; font-style: italic; margin: 8px 0; }
+  .certificate-body { font-size: .92rem; color: #444; line-height: 1.6; margin-bottom: 16px; }
+  .certificate-date { font-size: .78rem; color: #999; margin-top: 16px; }
+  .cert-name-input-wrap { margin: 16px auto; max-width: 360px; }
+  .cert-name-input { width: 100%; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 10px;
+    background: var(--surface); color: var(--text-primary); font-size: 1rem;
+    text-align: center; outline: none; }
+  .cert-name-input:focus { border-color: var(--accent); }
+  .cert-name-label { font-size: .85rem; color: var(--text-secondary); margin-bottom: 8px; }
+
+  .cert-module-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; max-width: 900px; margin: 0 auto; }
+  .cert-module-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px; padding: 24px; cursor: pointer; transition: transform .15s, box-shadow .15s; }
+  .cert-module-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.1); border-color: var(--accent); }
+  .cert-module-icon { font-size: 1.8rem; margin-bottom: 10px; }
+  .cert-module-title { font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+  .cert-module-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .cert-module-pill { background: color-mix(in srgb, var(--accent) 12%, transparent); color: var(--accent); border-radius: 20px; padding: 3px 10px; font-size: .72rem; font-weight: 600; }
+  .cert-module-badge { display: inline-flex; align-items: center; gap: 4px; font-size: .78rem; color: #16a34a; font-weight: 600; margin-top: 4px; margin-bottom: 2px; }
   </style>
 </head>
 <body>
@@ -553,6 +637,534 @@ const EQ_CATEGORIES = [
 
 let eqRatings = {};
 
+
+
+// ─────────────────────────────────────────────
+// CERTIFICATION DATA
+// ─────────────────────────────────────────────
+const CERT_MODULES = [
+  {
+    id: 'self-awareness',
+    title: 'Self Awareness and Impact',
+    questions: [
+      {
+        q: "Win-Win Agreements are designed to bring clarity, set expectations, close communication loops, and:",
+        options: [
+          "Eliminate workplace conflict permanently",
+          "Drive results while strengthening relationships",
+          "Reduce managers' administrative workload",
+          "Increase headcount approval from leadership"
+        ],
+        answer: 1
+      },
+      {
+        q: "According to the material, success with Win-Win Agreements depends primarily on:",
+        options: [
+          "Thorough documentation and weekly reviews",
+          "Team alignment sessions",
+          "Honoring commitments",
+          "Senior leadership sponsorship"
+        ],
+        answer: 2
+      },
+      {
+        q: "Win-Win Agreements mean saying 'yes' to everything in order to keep all stakeholders satisfied.",
+        options: [
+          "True — responsiveness builds trust",
+          "True — managers should always accommodate",
+          "False — it's about skillfully managing commitments in all directions",
+          "False — managers should only commit to direct reports"
+        ],
+        answer: 2
+      },
+      {
+        q: "EQ and self-awareness are responsible for up to what percentage of a leader's effectiveness?",
+        options: ["45%", "55%", "67%", "78%"],
+        answer: 2
+      },
+      {
+        q: "Companies that prioritize Emotional Intelligence average what percentage higher profitability?",
+        options: ["10%", "15%", "21%", "30%"],
+        answer: 2
+      },
+      {
+        q: "What was the key takeaway from the Hulu EQ case study?",
+        options: [
+          "Strong EQ skills always lead to better team outcomes",
+          "EQ should be deprioritized in high-pressure environments",
+          "Balance is key — overusing even positive EQ skills can backfire",
+          "EQ matters primarily during onboarding, not day-to-day management"
+        ],
+        answer: 2
+      },
+      {
+        q: "When applying EQ skills, the recommended approach is to:",
+        options: [
+          "Apply them consistently in every situation regardless of context",
+          "Focus only on your strongest EQ areas to build confidence",
+          "Avoid using EQ skills until they feel completely natural",
+          "Apply EQ skills intentionally in your development focus areas"
+        ],
+        answer: 3
+      },
+      {
+        q: "Which of the following is NOT listed as a group to include in 360° feedback interviews?",
+        options: [
+          "Peers",
+          "External consultants",
+          "Senior leaders and managers",
+          "Clients"
+        ],
+        answer: 1
+      },
+      {
+        q: "Win-Win Agreements help managers manage commitments in which direction(s)?",
+        options: [
+          "Only downward — with direct reports",
+          "Only upward — with senior leadership",
+          "Only laterally — with peer managers",
+          "All directions — up, down, and across the organization"
+        ],
+        answer: 3
+      },
+      {
+        q: "Which best describes the relationship between EQ and leadership success?",
+        options: [
+          "EQ is a soft skill with minimal measurable impact on business results",
+          "EQ affects roughly one-third of leadership decisions",
+          "EQ and self-awareness are among the strongest predictors of leadership success",
+          "EQ matters primarily in conflict resolution, not day-to-day management"
+        ],
+        answer: 2
+      }
+    ]
+  },
+  {
+    id: 'leading-change',
+    title: 'Leading Change Daily',
+    questions: [
+      {
+        q: "How frequently should managers intentionally adopt and practice a stress management tool?",
+        options: [
+          "Daily",
+          "Weekly",
+          "Monthly",
+          "Only during high-stress periods"
+        ],
+        answer: 1
+      },
+      {
+        q: "Which of the following is listed as a recommended stress management tool for managers?",
+        options: [
+          "Extended team off-sites",
+          "Skip-level performance reviews",
+          "Short breathing or mindfulness breaks",
+          "Competitive benchmarking exercises"
+        ],
+        answer: 2
+      },
+      {
+        q: "To help your team navigate change effectively, a manager should:",
+        options: [
+          "Announce changes without context to keep the process moving",
+          "Wait until change is fully complete before communicating",
+          "Think through the implications of the change to help the team move quickly up the change curve",
+          "Delegate all change communications to HR"
+        ],
+        answer: 2
+      },
+      {
+        q: "What is the 'change curve' in the context of leading change?",
+        options: [
+          "A graphical model showing budget impact of organizational changes",
+          "The progression people go through when adapting to change",
+          "A metric tracking how quickly teams implement new processes",
+          "A framework for prioritizing which changes to implement first"
+        ],
+        answer: 1
+      },
+      {
+        q: "Which of the following is NOT listed as a recommended stress management practice?",
+        options: [
+          "Regular check-ins",
+          "Workload-prioritization conversations",
+          "Extended team off-sites",
+          "Clear boundaries around availability"
+        ],
+        answer: 2
+      },
+      {
+        q: "What are the four key leadership areas mentioned for leading change?",
+        options: [
+          "Communicate, Delegate, Execute, Review",
+          "Vision, Strategy, Execution, Measurement",
+          "Understand and Accept, Plan and Prepare, Delegate Appropriately, Manage Commitments",
+          "Awareness, Planning, Action, Reflection"
+        ],
+        answer: 2
+      },
+      {
+        q: "The phrase 'Leisure is not a luxury — it's a requirement for top leaders' suggests that rest and recovery are:",
+        options: [
+          "Optional perks reserved for high performers",
+          "Best managed only during scheduled vacation time",
+          "A requirement for sustained leadership effectiveness",
+          "Less important than building technical skills"
+        ],
+        answer: 2
+      },
+      {
+        q: "Clear boundaries around availability are listed as a tool for:",
+        options: [
+          "Performance management",
+          "Team building",
+          "Stress management",
+          "Change communication"
+        ],
+        answer: 2
+      },
+      {
+        q: "Helping your team move quickly up the change curve requires the manager to:",
+        options: [
+          "Minimize discussion of the change to reduce team anxiety",
+          "Think through the implications of the change in advance",
+          "Let the team discover the implications naturally over time",
+          "Focus messaging exclusively on the positive aspects of change"
+        ],
+        answer: 1
+      },
+      {
+        q: "Which of the four key change leadership areas involves distributing responsibility to others?",
+        options: [
+          "Understand and Accept",
+          "Plan and Prepare",
+          "Delegate Appropriately",
+          "Manage Commitments"
+        ],
+        answer: 2
+      }
+    ]
+  },
+  {
+    id: 'accountability-culture',
+    title: 'Accountability Culture',
+    questions: [
+      {
+        q: "As managers, what kind of culture do we have the power to create on our teams?",
+        options: [
+          "A culture based on performance metrics and rankings",
+          "A culture based on respect and trust",
+          "A culture based on individual competition",
+          "A culture based on strict hierarchy"
+        ],
+        answer: 1
+      },
+      {
+        q: "The term 'count-on-ability' refers to:",
+        options: [
+          "A system for tracking meeting attendance and punctuality",
+          "Building a culture where team members are genuinely accountable",
+          "A method for counting and scoring employee deliverables",
+          "A financial framework for budget accountability"
+        ],
+        answer: 1
+      },
+      {
+        q: "Which of the following is NOT one of the three ways to build a 'count-on-ability' culture?",
+        options: [
+          "Defining your team's purpose and the value they provide to the company",
+          "Clearly defining the roles for each team member",
+          "Setting a clear cadence for meetings to follow up on actions and tasks",
+          "Implementing a formal performance improvement plan for all team members"
+        ],
+        answer: 3
+      },
+      {
+        q: "When defining your team's purpose, what should team members understand?",
+        options: [
+          "Their individual performance rankings relative to peers",
+          "The company's stock price and financial targets",
+          "The value they provide to the company",
+          "The full organizational chart and reporting hierarchy"
+        ],
+        answer: 2
+      },
+      {
+        q: "What is the primary purpose of setting a clear meeting cadence?",
+        options: [
+          "To fill calendars and demonstrate manager visibility",
+          "To follow up on actions and tasks, ensuring meetings progress activities and ownership of accountabilities",
+          "To replace written performance reviews with verbal check-ins",
+          "To give team members a forum to raise complaints"
+        ],
+        answer: 1
+      },
+      {
+        q: "The 'accountability ladder' is a tool to help managers:",
+        options: [
+          "Rank employees from least to most accountable for review purposes",
+          "Determine who is eligible for promotion",
+          "Recognize where people are and focus on what we can control to stay above the line",
+          "Track hours worked versus goals achieved each quarter"
+        ],
+        answer: 2
+      },
+      {
+        q: "The material contrasts two types of team culture. What are they?",
+        options: [
+          "High performance vs. low performance culture",
+          "Culture of blame vs. culture of trust and accountability",
+          "Remote work culture vs. in-office culture",
+          "Startup culture vs. corporate culture"
+        ],
+        answer: 1
+      },
+      {
+        q: "Awareness of where team members are on the accountability ladder:",
+        options: [
+          "Should only be used during formal performance review cycles",
+          "Helps managers determine who to let go during restructuring",
+          "Strengthens the manager personally and provides a better way to lead and coach the team",
+          "Is most useful for documenting disciplinary actions"
+        ],
+        answer: 2
+      },
+      {
+        q: "Coaching a team member 'up the ladder' means:",
+        options: [
+          "Promoting them into a people management role",
+          "Helping them move from blame and avoidance toward ownership and accountability",
+          "Assigning them additional responsibilities without a title change",
+          "Transferring them to a higher-performing team"
+        ],
+        answer: 1
+      },
+      {
+        q: "When team members focus on what they can control, what does it help them do?",
+        options: [
+          "Exceed individual performance targets more consistently",
+          "Avoid difficult conversations with leadership",
+          "Stay above the line on the accountability ladder",
+          "Reduce the number of meetings they need to attend"
+        ],
+        answer: 2
+      }
+    ]
+  },
+  {
+    id: 'make-stress-work',
+    title: 'Make Stress Work for You',
+    questions: [
+      {
+        q: "Which of the following is NOT one of the three types of stress described in the material?",
+        options: [
+          "Acute",
+          "Cumulative",
+          "Chronic",
+          "Reactive"
+        ],
+        answer: 3
+      },
+      {
+        q: "Which is an example of acute stress?",
+        options: [
+          "Ongoing financial difficulties",
+          "A buildup of work, health, and relationship pressures",
+          "Public speaking or job interviews",
+          "A persistent health condition"
+        ],
+        answer: 2
+      },
+      {
+        q: "Cortisol released during a stress response peaks within how many minutes?",
+        options: [
+          "5 minutes",
+          "15 minutes",
+          "30 minutes",
+          "60 minutes"
+        ],
+        answer: 1
+      },
+      {
+        q: "What is essential to returning the body to balance after a stress response?",
+        options: [
+          "Taking a nap immediately after the stressor passes",
+          "Eliminating all future stressors from your schedule",
+          "Completing the stress cycle",
+          "Consuming caffeine to reset energy levels"
+        ],
+        answer: 2
+      },
+      {
+        q: "According to the material, what percentage of people are truly capable of multitasking?",
+        options: [
+          "10%",
+          "25%",
+          "5%",
+          "2.5%"
+        ],
+        answer: 3
+      },
+      {
+        q: "Staying 'Above the Line' and focusing on what's within your control activates which three EQ skills?",
+        options: [
+          "Empathy, Self-Awareness, and Motivation",
+          "Flexibility, Optimism, and Stress Tolerance",
+          "Communication, Delegation, and Focus",
+          "Confidence, Resilience, and Discipline"
+        ],
+        answer: 1
+      },
+      {
+        q: "The 6-Box Model is recommended as a tool to:",
+        options: [
+          "Track team performance across six key categories",
+          "Organize weekly priorities into six time blocks",
+          "Reframe 'being busy' and challenge hustle culture",
+          "Evaluate six dimensions of workplace stress"
+        ],
+        answer: 2
+      },
+      {
+        q: "How does the sympathetic nervous system respond to stress?",
+        options: [
+          "It activates only in response to real — not perceived — threats",
+          "It activates automatically to handle stress and releases hormones like cortisol",
+          "It takes several hours to engage after a stressor appears",
+          "It shuts down non-essential functions permanently until full rest is achieved"
+        ],
+        answer: 1
+      },
+      {
+        q: "What is the recommended amount of intentional movement per day?",
+        options: [
+          "10 minutes",
+          "20 minutes",
+          "30 minutes",
+          "60 minutes"
+        ],
+        answer: 2
+      },
+      {
+        q: "Our nervous systems naturally do what with the people around us?",
+        options: [
+          "Compete for regulatory resources under stress",
+          "Shut down to protect individual wellbeing",
+          "Override each other's stress responses",
+          "Co-regulate"
+        ],
+        answer: 3
+      }
+    ]
+  },
+  {
+    id: 'giving-receiving-feedback',
+    title: 'Giving and Receiving Feedback',
+    questions: [
+      {
+        q: "Which of the following is NOT one of the four elements of successful feedback?",
+        options: [
+          "Growth mindset",
+          "Curiosity",
+          "Confidence",
+          "Trust"
+        ],
+        answer: 2
+      },
+      {
+        q: "Which type of feedback focuses on future actions and solutions rather than past performance?",
+        options: [
+          "Constructive Feedback",
+          "Coaching Feedback",
+          "Evaluation Feedback",
+          "Future Focus Feedback"
+        ],
+        answer: 3
+      },
+      {
+        q: "Coaching feedback is best described as:",
+        options: [
+          "Focused on correcting immediate performance issues",
+          "Typically employee-led and focused on career development and guidance",
+          "Reserved exclusively for annual performance review cycles",
+          "Given only by senior managers to high-potential employees"
+        ],
+        answer: 1
+      },
+      {
+        q: "When giving Appreciation Feedback, what is recommended?",
+        options: [
+          "Keep it general to avoid singling anyone out",
+          "Save it for formal performance reviews",
+          "Be specific about what was done well",
+          "Deliver it only in private to maintain confidentiality"
+        ],
+        answer: 2
+      },
+      {
+        q: "In the SBI feedback model, what does the 'S' stand for?",
+        options: [
+          "Strength",
+          "Style",
+          "Situation",
+          "Strategy"
+        ],
+        answer: 2
+      },
+      {
+        q: "When describing Behavior in the SBI Model, you should:",
+        options: [
+          "Include your personal judgements to make the feedback more impactful",
+          "Describe behaviors and actions while avoiding personal judgements or opinions",
+          "Focus on the employee's attitude and underlying intentions",
+          "Combine behavior and impact into one statement to save time"
+        ],
+        answer: 1
+      },
+      {
+        q: "What does the 'I' in the SBI Model represent?",
+        options: [
+          "Intention",
+          "Improvement",
+          "Insight",
+          "Impact"
+        ],
+        answer: 3
+      },
+      {
+        q: "Which type of feedback is typically associated with performance reviews?",
+        options: [
+          "Positive Feedback",
+          "Evaluation Feedback",
+          "Appreciation Feedback",
+          "Future Focus Feedback"
+        ],
+        answer: 1
+      },
+      {
+        q: "Future Focus Feedback differs from Constructive Feedback in that it:",
+        options: [
+          "Is always delivered by a peer rather than a manager",
+          "Only addresses technical skills, not behavioral ones",
+          "Focuses on the outcomes you want to see rather than what didn't work in the past",
+          "Is used exclusively with high performers"
+        ],
+        answer: 2
+      },
+      {
+        q: "The SBI Model begins by setting context and objectively stating what you observed. Which step is this?",
+        options: [
+          "Behavior",
+          "Impact",
+          "Summary",
+          "Situation"
+        ],
+        answer: 3
+      }
+    ]
+  }
+];
+let certState = {}; // keyed by module id
 
 // ─────────────────────────────────────────────
 // DATA
@@ -2444,6 +3056,10 @@ function render() {
   else if (S.screen === 'eq-intro')     wrap.appendChild(renderEQIntro());
   else if (S.screen === 'eq-questions') wrap.appendChild(renderEQQuestions());
   else if (S.screen === 'eq-results')   wrap.appendChild(renderEQResults());
+  else if (S.screen === 'cert-list')     wrap.appendChild(renderCertList());
+  else if (S.screen === 'cert-intro')    wrap.appendChild(renderCertIntro());
+  else if (S.screen === 'cert-question') wrap.appendChild(renderCertQuestion());
+  else if (S.screen === 'cert-results')  wrap.appendChild(renderCertResults());
 
   app.appendChild(wrap);
 }
@@ -2464,6 +3080,10 @@ function mkTopbar() {
       else if (S.screen === 'eq-intro')   go('home');
       else if (S.screen === 'eq-questions') go('eq-intro');
       else if (S.screen === 'eq-results')  go('eq-questions');
+      else if (S.screen === 'cert-list')     go('home');
+      else if (S.screen === 'cert-intro')    go('cert-list');
+      else if (S.screen === 'cert-question') go('cert-intro', { certModuleId: S.certModuleId });
+      else if (S.screen === 'cert-results')  go('cert-intro', { certModuleId: S.certModuleId });
     };
   }
   bar.appendChild(back);
@@ -2515,6 +3135,27 @@ function renderHome() {
   `;
   eqCard.onclick = () => go('eq-intro');
   frag.appendChild(eqCard);
+
+  // Certification card
+  const certHd = el('div', 'sec-hd');
+  certHd.innerHTML = '<h2>🏅 Manager Certifications</h2><p>Test your knowledge and earn certificates of completion.</p>';
+  frag.appendChild(certHd);
+
+  const certCard = el('div', 'eq-home-card');
+  certCard.innerHTML = `
+    <div class="eq-home-icon">🏅</div>
+    <div class="eq-home-body">
+      <div class="eq-home-title">Manager Certifications</div>
+      <div class="eq-home-desc">Complete topic-based quizzes and earn a certificate for each one you pass.</div>
+      <div class="eq-home-pills">
+        <span class="eq-home-pill">${CERT_MODULES.length} Quizzes Available</span>
+        <span class="eq-home-pill">~5 Minutes Each</span>
+        <span class="eq-home-pill">Certificate on Pass</span>
+      </div>
+    </div>
+  `;
+  certCard.onclick = () => go('cert-list');
+  frag.appendChild(certCard);
 
   return frag;
 }
@@ -3019,6 +3660,276 @@ function renderEQResults() {
   row.appendChild(topicsBtn);
   frag.appendChild(row);
 
+  return frag;
+}
+
+
+// ─── CERTIFICATION ───
+function getCertModule() {
+  return CERT_MODULES.find(m => m.id === S.certModuleId);
+}
+function getCertAnswers() {
+  if (!certState[S.certModuleId]) certState[S.certModuleId] = { answers: {}, name: '' };
+  return certState[S.certModuleId].answers;
+}
+
+function renderCertList() {
+  const frag = df();
+  const hd = el('div', 'sec-hd');
+  hd.innerHTML = '<h2>🏅 Certifications</h2><p>Complete a quiz to earn your certificate of completion.</p>';
+  frag.appendChild(hd);
+  const grid = el('div', 'cert-module-grid');
+  CERT_MODULES.forEach(mod => {
+    const ca = certState[mod.id] ? certState[mod.id].answers : {};
+    const done = Object.keys(ca).length === mod.questions.length;
+    const correct = done ? mod.questions.filter((q, i) => ca[i] === q.answer).length : 0;
+    const passed = done && correct >= Math.ceil(mod.questions.length * 0.8);
+    const card = el('div', 'cert-module-card');
+    card.innerHTML = `
+      <div class="cert-module-icon">🏅</div>
+      <div class="cert-module-title">${mod.title}</div>
+      ${passed ? '<div class="cert-module-badge">✓ Passed · ' + correct + '/' + mod.questions.length + '</div>' : ''}
+      <div class="cert-module-pills">
+        <span class="cert-module-pill">${mod.questions.length} Questions</span>
+        <span class="cert-module-pill">~5 Minutes</span>
+        <span class="cert-module-pill">Certificate on Pass</span>
+      </div>
+    `;
+    card.onclick = () => go('cert-intro', { certModuleId: mod.id });
+    grid.appendChild(card);
+  });
+  frag.appendChild(grid);
+  return frag;
+}
+
+function renderCertIntro() {
+  const mod = getCertModule();
+  if (!mod) { go('cert-list'); return df(); }
+  const frag = df();
+  const card = el('div', 'cert-intro-card');
+  card.innerHTML = `
+    <div style="font-size:2rem;margin-bottom:12px">🏅</div>
+    <h2>${mod.title}</h2>
+    <p>Test your knowledge and earn your certificate of completion.</p>
+    <div class="cert-intro-rules">
+      <ul style="margin:0;padding-left:18px">
+        <li>${mod.questions.length} multiple-choice questions</li>
+        <li>Score ${Math.ceil(mod.questions.length * 0.8)} or more (80%) to earn your certificate</li>
+        <li>Review explanations after each question</li>
+        <li>Re-take as many times as you like</li>
+      </ul>
+    </div>
+  `;
+  const btnRow = el('div', 'btn-row');
+  const start = el('button', 'btn btn-primary', 'Start Quiz →');
+  start.onclick = () => {
+    certState[mod.id] = { answers: {}, name: '' }; // clear name on every new attempt
+    go('cert-question', { certModuleId: mod.id, certIndex: 0 });
+  };
+  const back = el('button', 'btn btn-ghost', '← Back');
+  back.onclick = () => go('cert-list');
+  btnRow.appendChild(start);
+  btnRow.appendChild(back);
+  card.appendChild(btnRow);
+  frag.appendChild(card);
+  return frag;
+}
+
+function renderCertQuestion() {
+  const mod = getCertModule();
+  if (!mod) { go('cert-list'); return df(); }
+  const idx = S.certIndex || 0;
+  const q = mod.questions[idx];
+  const answers = getCertAnswers();
+  const answered = answers[idx] !== undefined;
+  const frag = df();
+  const wrap = el('div', 'cert-q-wrap');
+
+  const prog = el('div', 'cert-progress');
+  const bar = el('div', 'cert-progress-bar');
+  const fill = el('div', 'cert-progress-fill');
+  fill.style.width = ((idx / mod.questions.length) * 100) + '%';
+  bar.appendChild(fill);
+  const lbl = el('div', 'cert-progress-label', (idx + 1) + ' / ' + mod.questions.length);
+  prog.appendChild(bar);
+  prog.appendChild(lbl);
+  wrap.appendChild(prog);
+
+  const num = el('div', 'cert-q-num', 'Question ' + (idx + 1));
+  const text = el('div', 'cert-q-text', q.q);
+  wrap.appendChild(num);
+  wrap.appendChild(text);
+
+  const opts = el('div', 'cert-options');
+  const letters = ['A', 'B', 'C', 'D'];
+  q.options.forEach((opt, i) => {
+    const row = el('div', 'cert-option');
+    if (answered) {
+      if (i === answers[idx]) row.classList.add('selected');
+    } else {
+      row.onclick = () => selectCertAnswer(mod.id, idx, i);
+    }
+    const letter = el('div', 'cert-option-letter', letters[i]);
+    const lbl2 = el('span', '', opt);
+    row.appendChild(letter);
+    row.appendChild(lbl2);
+    opts.appendChild(row);
+  });
+  wrap.appendChild(opts);
+
+  if (answered) {
+    const isCorrect = answers[idx] === q.answer;
+    const banner = el('div', 'cert-feedback-banner ' + (isCorrect ? 'correct' : 'wrong'),
+      isCorrect ? '✓ Correct!' : '✗ Incorrect — review the material and try again on your next attempt.');
+    wrap.appendChild(banner);
+    const btnRow = el('div', 'btn-row');
+    btnRow.style.marginTop = '20px';
+    if (idx < mod.questions.length - 1) {
+      const next = el('button', 'btn btn-primary', 'Next Question →');
+      next.onclick = () => go('cert-question', { certModuleId: mod.id, certIndex: idx + 1 });
+      btnRow.appendChild(next);
+    } else {
+      const submit = el('button', 'btn btn-primary', 'See Results →');
+      submit.onclick = () => go('cert-results', { certModuleId: mod.id });
+      btnRow.appendChild(submit);
+    }
+    wrap.appendChild(btnRow);
+  }
+  frag.appendChild(wrap);
+  return frag;
+}
+
+function selectCertAnswer(modId, idx, choice) {
+  if (!certState[modId]) certState[modId] = { answers: {}, name: '' };
+  certState[modId].answers[idx] = choice;
+  go('cert-question', { certModuleId: modId, certIndex: idx });
+}
+
+function renderCertResults() {
+  const mod = getCertModule();
+  if (!mod) { go('cert-list'); return df(); }
+  const answers = getCertAnswers();
+  const total = mod.questions.length;
+  const correct = mod.questions.filter((q, i) => answers[i] === q.answer).length;
+  const pct = Math.round((correct / total) * 100);
+  const passed = correct >= Math.ceil(total * 0.8);
+  const frag = df();
+  const card = el('div', 'cert-result-card');
+
+  const ring = el('div', 'cert-score-ring ' + (passed ? 'pass' : 'fail'), correct + '/' + total);
+  card.appendChild(ring);
+  card.appendChild(el('div', 'cert-result-title', passed ? '🎉 You Passed!' : '📝 Keep Practicing'));
+  card.appendChild(el('div', 'cert-result-score', 'Score: ' + correct + ' out of ' + total + ' (' + pct + '%)'));
+
+  // Name input — always shown, always blank so each person enters their own
+  const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  const nameLbl = el('div', 'cert-name-label', 'Your Name:');
+  nameLbl.style.fontWeight = '600';
+  nameLbl.style.marginBottom = '6px';
+  card.appendChild(nameLbl);
+  const nameWrap = el('div', 'cert-name-input-wrap');
+  const nameInput = el('input', 'cert-name-input');
+  nameInput.type = 'text';
+  nameInput.placeholder = 'Enter your full name';
+  nameInput.id = 'cert-name-field';
+  nameInput.value = '';
+  nameInput.oninput = (e) => {
+    const val = e.target.value;
+    if (!certState[mod.id]) certState[mod.id] = { answers: {}, name: '' };
+    certState[mod.id].name = val;
+    const certEl = document.getElementById('cert-certificate');
+    if (certEl) {
+      const nameEl = certEl.querySelector('.certificate-name');
+      if (nameEl) nameEl.textContent = val || 'Your Name';
+    }
+  };
+  nameWrap.appendChild(nameInput);
+  card.appendChild(nameWrap);
+
+  if (passed) {
+    const certDiv = el('div', 'certificate');
+    certDiv.id = 'cert-certificate';
+    certDiv.innerHTML = `
+      <div class="certificate-header">Certificate of Completion</div>
+      <div class="certificate-title">Manager Playbook</div>
+      <div class="certificate-subtitle">${mod.title}</div>
+      <div class="certificate-divider"></div>
+      <div style="font-size:.85rem;color:#777;margin-bottom:4px">This certifies that</div>
+      <div class="certificate-name">Your Name</div>
+      <div class="certificate-body">
+        has successfully completed the certification assessment on<br>
+        <strong>${mod.title}</strong><br>
+        with a score of <strong>${correct}/${total} (${pct}%)</strong>.
+      </div>
+      <div class="certificate-divider"></div>
+      <div class="certificate-date">Issued: ${today}</div>
+    `;
+    card.appendChild(certDiv);
+
+    const printBtn = el('button', 'btn btn-ghost', '🖨️ Print Certificate');
+    printBtn.onclick = () => window.print();
+    printBtn.style.marginBottom = '12px';
+    card.appendChild(printBtn);
+
+    // Sent banner — hidden until after email fires
+    const sentBanner = el('div', '');
+    sentBanner.style.cssText = 'display:none;text-align:center;padding:20px 0;';
+    sentBanner.innerHTML = `
+      <div style="font-size:2rem;margin-bottom:8px">✅</div>
+      <div style="font-size:1.1rem;font-weight:700;color:var(--text-primary);margin-bottom:4px">Sent!</div>
+      <div style="font-size:.9rem;color:var(--text-secondary);margin-bottom:20px">Your certificate notification has been sent.</div>
+    `;
+    const backBtn = el('button', 'btn btn-primary', '← View All Certifications');
+    backBtn.onclick = () => go('cert-list');
+    sentBanner.appendChild(backBtn);
+    card.appendChild(sentBanner);
+
+    const sendBtn = el('button', 'btn btn-primary', '📧 Send Certificate Email');
+    sendBtn.onclick = () => {
+      const name = (certState[mod.id] && certState[mod.id].name) || nameInput.value || 'Unknown';
+      sendBtn.disabled = true;
+      sendBtn.textContent = 'Sending…';
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: 'ce2cb9cd-8dbb-44d5-9a21-87d4feb09cd0',
+          subject: 'Manager Playbook Certification: ' + mod.title,
+          from_name: 'Manager Playbook',
+          message: name + ' has successfully completed the Manager Playbook certification.\n\nCertification: ' + mod.title + '\nScore: ' + correct + '/' + total + ' (' + pct + '%)\nDate: ' + today
+        })
+      })
+      .then(r => r.json())
+      .then(() => {
+        sendBtn.style.display = 'none';
+        sentBanner.style.display = 'block';
+      })
+      .catch(() => {
+        sendBtn.disabled = false;
+        sendBtn.textContent = '📧 Send Certificate Email';
+        alert('Could not send — please try again.');
+      });
+    };
+    card.appendChild(sendBtn);
+  } else {
+    const msg = el('p', '', 'You need ' + (Math.ceil(total * 0.8) - correct) + ' more correct answer' + (Math.ceil(total * 0.8) - correct !== 1 ? 's' : '') + ' to pass. Review the topics and give it another try!');
+    msg.style.color = 'var(--text-secondary)';
+    msg.style.marginBottom = '24px';
+    card.appendChild(msg);
+  }
+
+  const btnRow = el('div', 'btn-row');
+  const retake = el('button', 'btn btn-primary', '↩ Retake Quiz');
+  retake.onclick = () => {
+    certState[mod.id] = { answers: {}, name: '' };
+    go('cert-intro', { certModuleId: mod.id });
+  };
+  const allBtn = el('button', 'btn btn-ghost', '← All Certifications');
+  allBtn.onclick = () => go('cert-list');
+  btnRow.appendChild(retake);
+  btnRow.appendChild(allBtn);
+  card.appendChild(btnRow);
+  frag.appendChild(card);
   return frag;
 }
 
