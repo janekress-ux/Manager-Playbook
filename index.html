@@ -3031,6 +3031,14 @@ function question() { return scenario() && scenario().questions[S.qIndex]; }
 // ─────────────────────────────────────────────
 function go(screen, extra) {
   Object.assign(S, { screen, showFeedback: false, showInsight: false }, extra || {});
+  // Update URL hash for shareable cert links
+  if (screen === 'cert-list') {
+    history.replaceState(null, '', '#certifications');
+  } else if (screen === 'cert-intro' && S.certModuleId) {
+    history.replaceState(null, '', '#cert/' + S.certModuleId);
+  } else if (screen === 'home') {
+    history.replaceState(null, '', window.location.pathname);
+  }
   render();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -3947,6 +3955,17 @@ function df() { return document.createDocumentFragment(); }
 // ─────────────────────────────────────────────
 // BOOT
 // ─────────────────────────────────────────────
+// Parse URL hash for direct cert deep-links
+(function() {
+  const hash = window.location.hash;
+  if (hash === '#certifications') {
+    S.screen = 'cert-list';
+  } else if (hash.startsWith('#cert/')) {
+    const modId = hash.slice(6);
+    const mod = CERT_MODULES.find(m => m.id === modId);
+    if (mod) { S.screen = 'cert-intro'; S.certModuleId = modId; }
+  }
+})();
 render();
 </script>
 </body>
